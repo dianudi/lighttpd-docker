@@ -1,12 +1,12 @@
 # Lighttpd Docker Reverse Proxy
 
-Make Lighttpd a reverse proxy for connecting to each web server on many Docker containers. SSL uses a self-signed certificate and is auto-generated at once.
-Main branch is for Reverse proxy, for other variant see branch menu.
+Make Lighttpd as an PHP web server. SSL uses a self-signed certificate and is auto-generated at once.
+This branch is for PHP, for other variant see branch menu.
 
 ### Build
 
 1. Clone or download this repository.
-2. Configure your web service in the etc/service-enabled directory as you want.
+2. Configure your vhost in the etc/vhost-enabled directory as you want.
 3. Build with docker compose
 
 ```sh

@@ -1,6 +1,7 @@
 FROM alpine
 
-RUN apk add --update --no-cache lighttpd openssl && rm -rf /var/cache/apk/*
+# You can add more php extension for your application.
+RUN apk add --update --no-cache lighttpd php83-fpm openssl && rm -rf /var/cache/apk/*
 
 # Copy configuration.
 COPY etc/lighttpd /etc/lighttpd/
