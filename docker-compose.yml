@@ -1,0 +1,21 @@
+services:
+  lighttpd:
+    container_name: lighttpd-reverse-proxy
+    image: dianudi/lighttpd-reverse-proxy-docker
+    pull_policy: build
+    build: .
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    volumes:
+      - ./htdocs:/var/www/
+# Configuration for connecting to each container using an external network
+#     networks:
+#       default:
+#         ipv4_address: "192.168.10.2"
+
+# networks:
+#   default:
+#     name: http-proxy-network
+#     external: true
