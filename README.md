@@ -1,4 +1,4 @@
-# Lighttpd Docker Reverse Proxy
+# Lighttpd Docker PHP FPM
 
 Make Lighttpd as an PHP web server. SSL uses a self-signed certificate and is auto-generated at once.
 This branch is for PHP, for other variant see branch menu.
