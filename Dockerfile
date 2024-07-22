@@ -1,10 +1,32 @@
 FROM alpine
 
+RUN apk add --update --no-cache lighttpd\
 # You can add more php extension for your application.
-RUN apk add --update --no-cache lighttpd php83-fpm openssl && rm -rf /var/cache/apk/*
+ php83-fpm \
+#  php83-ctype \
+#  php83-curl \
+#  php83-dom \
+#  php83-fileinfo \
+#  php83-gd \
+#  php83-intl \
+#  php83-mbstring \
+#  php83-mysqli \
+#  php83-opcache \
+#  php83-openssl \
+#  php83-phar \
+#  php83-session \
+#  php83-tokenizer \
+#  php83-xml \
+#  php83-xmlreader \
+#  php83-xmlwriter \
+ openssl && rm -rf /var/cache/apk/*
 
+# ensure www-data user exists
+RUN set -eux; \
+	adduser -u 82 -D -S -G www-data www-data
+    
 # Copy configuration.
-COPY etc/lighttpd /etc/lighttpd/
+COPY etc/lighttpd /etc/lighttpd
 COPY start.sh /usr/local/bin/
 
 # Expose HTTP(S) Port.
@@ -19,7 +41,7 @@ RUN mkdir /var/cache/lighttpd/compress
 RUN openssl req -x509 -newkey rsa:4096 -keyout /etc/lighttpd/certs/key.pem -out /etc/lighttpd/certs/cert.pem -sha256 -days 365 -nodes -subj "/C=ID/ST=DKI Jakarta/L=Jakarta/O=None/OU=None/CN=*"
 
 # Remove openssl
-RUN apk del --purge openssl
+# RUN apk del --purge openssl
 
 VOLUME [ "/var/www" ]
 

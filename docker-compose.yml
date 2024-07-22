@@ -1,7 +1,7 @@
 services:
   lighttpd:
-    container_name: lighttpd-reverse-proxy
-    image: dianudi/lighttpd-reverse-proxy-docker
+    container_name: lighttpd-php
+    image: dianudi/lighttpd-php
     pull_policy: build
     build: .
     ports:
