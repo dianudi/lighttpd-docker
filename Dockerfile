@@ -6,6 +6,10 @@ RUN apk add --update --no-cache lighttpd openssl && rm -rf /var/cache/apk/*
 COPY etc/lighttpd /etc/lighttpd/
 COPY start.sh /usr/local/bin/
 
+# Add www-data user.
+RUN set -eux; \
+	adduser -u 82 -D -S -G www-data www-data
+
 # Expose HTTP(S) Port.
 EXPOSE 80
 EXPOSE 443
