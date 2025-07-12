@@ -19,8 +19,14 @@ RUN mkdir /var/cache/lighttpd
 RUN mkdir /var/cache/lighttpd/compress
 RUN mkdir /etc/lighttpd/certs
 
-# Generate self signed certificate for 1 years. (example below is for indonesian country)
-RUN openssl req -x509 -newkey rsa:4096 -keyout /etc/lighttpd/certs/key.pem -out /etc/lighttpd/certs/cert.pem -sha256 -days 365 -nodes -subj "/C=ID/ST=DKI Jakarta/L=Jakarta/O=None/OU=None/CN=*"
+# Generate self signed certificate for 1 years.
+ARG COUNTRY="US"
+ARG STATE="California"
+ARG LOCALITY="San Francisco"
+ARG ORGANIZATION="None"
+ARG ORGANIZATIONAL_UNIT="None"
+ARG COMMON_NAME="*"
+RUN openssl req -x509 -newkey rsa:4096 -keyout /etc/lighttpd/certs/key.pem -out /etc/lighttpd/certs/cert.pem -sha256 -days 365 -nodes -subj "/C=${COUNTRY}/ST=${STATE}/L=${LOCALITY}/O=${ORGANIZATION}/OU=${ORGANIZATIONAL_UNIT}/CN=${COMMON_NAME}"
 
 # Remove openssl
 RUN apk del --purge openssl

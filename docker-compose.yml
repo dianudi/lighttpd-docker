@@ -3,7 +3,14 @@ services:
     container_name: lighttpd-reverse-proxy
     image: dianudi/lighttpd-reverse-proxy-docker
     pull_policy: build
-    build: .
+    build:
+      context: .
+      args:
+        COUNTRY: "US"
+        STATE: "California"
+        LOCALITY: "San Francisco"
+        ORGANIZATION: "MyCompany"
+        COMMON_NAME: "example.com"
     ports:
       - 80:80
       - 443:443
